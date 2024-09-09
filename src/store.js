@@ -44,6 +44,7 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
+    const maxCode = Math.max(0, ...this.state.list.map(item => item.code)); // Нахожу наибольшее значение
     this.setState({
       ...this.state,
       list: [...this.state.list, { code: generateCode(), title: 'Новая запись' }],
@@ -66,6 +67,12 @@ class Store {
    * Выделение записи по коду
    * @param code
    */
+  /**
+   * Выделение записи по коду
+   * @param code
+   */
+
+  // В методе selectItem добавил логику для подсчёта выделений
   selectItem(code) {
     this.setState({
       ...this.state,
