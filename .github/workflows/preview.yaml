@@ -21,6 +21,7 @@ jobs:
 
       - name: Pull Environments
 <<<<<<< HEAD
+<<<<<<< HEAD
         run: vercel pull --yes --environment=preview --token=cjMB7gUOQfIZC8XoUZALg9fI
 
       - name: Build
@@ -30,10 +31,17 @@ jobs:
         run: vercel deploy --prebuilt --token=cjMB7gUOQfIZC8XoUZALg9fI
 =======
         run: vercel pull --yes --environment=preview --token=YaPgLKFawGp2uztyfu4QOcOh
+=======
+        run: vercel pull --yes --environment=preview --token=cjMB7gUOQfIZC8XoUZALg9fI
+>>>>>>> 1a3af94 (packages updated)
 
       - name: Build
-        run: vercel build --token=YaPgLKFawGp2uztyfu4QOcOh
+        run: vercel build --token=cjMB7gUOQfIZC8XoUZALg9fI
 
       - name: Deploy
+<<<<<<< HEAD
         run: vercel deploy --prebuilt --token=YaPgLKFawGp2uztyfu4QOcOh
 >>>>>>> 2081cab (fix ci)
+=======
+        run: vercel deploy --prebuilt --token=cjMB7gUOQfIZC8XoUZALg9fI
+>>>>>>> 1a3af94 (packages updated)
