@@ -29,7 +29,14 @@ function App({ store }) {
                 <div className="Item-code">{item.code}</div>
                 <div className="Item-title">
                   {item.title}
-                  {item.selectionCount > 0 && <span> | Выделяли {item.selectionCount} раз </span>}
+                  {item.selectionCount > 0 && (
+                    <span>
+                      {' '}
+                      | Выделяли {item.selectionCount} раз
+                      <span />
+                      {[2, 3, 4].includes(item.selectionCount) && 'a'}
+                    </span>
+                  )}
                 </div>
                 <div className="Item-actions">
                   <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
