@@ -1,5 +1,5 @@
 import React from 'react';
-import { createElement } from './utils.js';
+import { createElement, getWordWithRaza } from './utils.js';
 import './styles.css';
 
 /**
@@ -32,9 +32,8 @@ function App({ store }) {
                   {item.selectionCount > 0 && (
                     <span>
                       {' '}
-                      | Выделяли {item.selectionCount} раз
+                      | Выделяли {getWordWithRaza(item.selectionCount)}
                       <span />
-                      {[2, 3, 4].includes(item.selectionCount) && 'a'}
                     </span>
                   )}
                 </div>

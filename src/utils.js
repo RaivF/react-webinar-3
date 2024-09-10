@@ -26,3 +26,16 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+//раз / раза
+export function getWordWithRaza(number) {
+  const lastDigit = number % 10;
+  const lastTwoDigits = number % 100;
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+    return `${number} раз`;
+  } else if (lastDigit === 2 || lastDigit === 3 || lastDigit === 4) {
+    return `${number} раза`;
+  } else {
+    return `${number} раз`;
+  }
+}
