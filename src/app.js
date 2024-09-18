@@ -9,7 +9,7 @@ import PageLayout from './components/page-layout';
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
-function App({ store }) {
+function App({ store = {} }) {
   const list = store.getState().list;
   const cartTotal = store.getCartTotal();
   const cartSum = store.getCartSum();
