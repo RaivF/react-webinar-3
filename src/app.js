@@ -1,5 +1,5 @@
 import React from 'react';
-import { createElement, getWordWithRaza } from './utils.js';
+import { commafy, getWordForQuantity } from './utils.js';
 import './styles.css';
 
 /**
@@ -9,42 +9,80 @@ import './styles.css';
  */
 function App({ store }) {
   const list = store.getState().list;
+  const cartTotal = store.getCartTotal();
+  const cartSum = store.getCartSum();
+
+  const [isCartOpen, setIsCartOpen] = React.useState(false);
 
   return (
     <div className="App">
       <div className="App-head">
-        <h1>Приложение на чистом JS</h1>
+        <h1>Магазин</h1>
       </div>
-      <div className="App-controls">
-        <button onClick={() => store.addItem()}>Добавить</button>
-      </div>
+
       <div className="App-center">
         <div className="List">
+          <div className="List-item">
+            <div className="Item">
+              <p> корзине:</p>
+              <p className="Card-info"> {cartTotal === 0 ? 'пусто' : cartTotal}</p>
+              {cartTotal != 0 && (
+                <p className="Card-info">
+                  {getWordForQuantity(cartTotal)} / {commafy(cartSum)}₽
+                </p>
+              )}
+              <div className="Item-actions">
+                <button onClick={() => setIsCartOpen(true)}>Перейти</button>
+              </div>
+            </div>
+          </div>
           {list.map(item => (
             <div key={item.code} className="List-item">
-              <div
-                className={'Item' + (item.selected ? ' Item_selected' : '')}
-                onClick={() => store.selectItem(item.code)}
-              >
+              <div className="Item">
                 <div className="Item-code">{item.code}</div>
-                <div className="Item-title">
-                  {item.title}
-                  {item.selectionCount > 0 && (
-                    <span>
-                      {' '}
-                      | Выделяли {getWordWithRaza(item.selectionCount)}
-                      <span />
-                    </span>
-                  )}
-                </div>
+                <div className="Item-title">{item.title}</div>
+                <div className="Item-cost">{commafy(item.cost)} ₽</div>
                 <div className="Item-actions">
-                  <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
+                  <button onClick={() => store.addToCart(item)}>Добавить</button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {isCartOpen && (
+        <div className="Modal">
+          <div className="Modal-header">
+            <h2>Корзина</h2>
+            <button onClick={() => setIsCartOpen(false)}>Закрыть</button>
+          </div>
+          <div className="Modal-body">
+            {store.getState().cart.length === 0 ? (
+              <div>Корзина пуста</div>
+            ) : (
+              <ul>
+                {store.getState().cart.map(cartItem => (
+                  <div key={cartItem.code} className="List-item">
+                    <div className="Item">
+                      <div className="Item-code">{cartItem.code}</div>
+                      <div className="Item-title">{cartItem.title}</div>
+                      <div className="Item-cost">{commafy(cartItem.cost)} ₽</div>
+                      <div className="Item-cost">{cartItem.quantity} шт</div>
+                      <div className="Item-actions">
+                        <button onClick={() => store.removeFromCart(cartItem.code)}>Удалить</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className="Modal-footer">
+            <div>Сумма: {commafy(cartSum)} ₽</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

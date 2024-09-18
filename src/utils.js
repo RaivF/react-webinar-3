@@ -1,41 +1,23 @@
-const propNames = new Set(['id', 'className', 'textContent', 'onclick']);
-
-/**
- * Создание элемента со свойствами и вложенными элементами
- * @param name {String} Название HTML тега
- * @param props {Object} Свойства и атрибуты элемента
- * @param children {...Node} Вложенные элементы
- * @returns {HTMLElement}
- */
-export function createElement(name, props = {}, ...children) {
-  const element = document.createElement(name);
-
-  // Назначение свойств и атрибутов
-  for (const name of Object.keys(props)) {
-    if (propNames.has(name)) {
-      element[name] = props[name];
-    } else {
-      element.setAttribute(name, props[name]);
-    }
-  }
-
-  // Вставка вложенных элементов
-  for (const child of children) {
-    element.append(child);
-  }
-
-  return element;
+// создание пробелов в четырёхзначных числах
+export function commafy(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
-//раз / раза
-export function getWordWithRaza(number) {
-  const lastDigit = number % 10;
-  const lastTwoDigits = number % 100;
 
-  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-    return `${number} раз`;
-  } else if (lastDigit === 2 || lastDigit === 3 || lastDigit === 4) {
-    return `${number} раза`;
-  } else {
-    return `${number} раз`;
+export function getWordForQuantity(count) {
+  const remainder10 = count % 10;
+  const remainder100 = count % 100;
+
+  if (remainder100 >= 11 && remainder100 <= 19) {
+    return 'товаров';
   }
+
+  if (remainder10 === 1) {
+    return 'товар';
+  }
+
+  if (remainder10 >= 2 && remainder10 <= 4) {
+    return 'товара';
+  }
+
+  return 'товаров';
 }
