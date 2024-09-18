@@ -5,7 +5,10 @@ import { generateCode } from './utils';
  */
 class Store {
   constructor(initState = {}) {
-    this.state = initState;
+    this.state = {
+      cart: [], // Состояние корзины
+      ...initState,
+    };
     this.listeners = []; // Слушатели изменений состояния
   }
 
@@ -41,10 +44,26 @@ class Store {
   }
 
   /**
-   * Добавление новой записи
+   * Добавление товара в корзину
+   * @param item {Object} Товар, который нужно добавить в корзину
    */
-  addItem() {
-    const maxCode = Math.max(0, ...this.state.list.map(item => item.code)); // Нахожу наибольшее значение
+  addToCart(item) {
+    const cartItem = this.state.cart.find(cartItem => cartItem.code === item.code);
+    if (cartItem) {
+      // Если товар уже есть в корзине, увеличиваем его количество
+      cartItem.quantity += 1;
+    } else {
+      // Если товара нет в корзине, добавляем его с количеством 1
+      this.state.cart.push({ ...item, quantity: 1 });
+    }
+    this.setState({ ...this.state });
+  }
+
+  /**
+   * Удаление товара из корзины
+   * @param code {Number} Код товара, который нужно удалить из корзины
+   */
+  removeFromCart(code) {
     this.setState({
       ...this.state,
       list: [...this.state.list, { code: generateCode(), title: 'Новая запись' }],
@@ -52,8 +71,8 @@ class Store {
   }
 
   /**
-   * Удаление записи по коду
-   * @param code
+   * Получение общего количества товаров в корзине
+   * @returns {Number} Общее количество уникальных товаров в корзине
    */
   deleteItem(code) {
     this.setState({
@@ -64,8 +83,8 @@ class Store {
   }
 
   /**
-   * Выделение записи по коду
-   * @param code
+   * Получение общей суммы всех товаров в корзине
+   * @returns {Number} Общая сумма товаров
    */
   /**
    * Выделение записи по коду

@@ -11,6 +11,10 @@ import PageLayout from './components/page-layout';
  */
 function App({ store }) {
   const list = store.getState().list;
+  const cartTotal = store.getCartTotal();
+  const cartSum = store.getCartSum();
+
+  const [isCartOpen, setIsCartOpen] = React.useState(false);
 
   const callbacks = {
     onDeleteItem: useCallback(

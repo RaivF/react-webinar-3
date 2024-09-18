@@ -50,16 +50,22 @@ export const generateCode1 = (function (start = 0) {
 export function generateCode2() {
   return generateCode2.value ? ++generateCode2.value : (generateCode2.value = 1);
 }
-//раз / раза
-export function getWordWithRaza(number) {
-  const lastDigit = number % 10;
-  const lastTwoDigits = number % 100;
 
-  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-    return `${number} раз`;
-  } else if (lastDigit === 2 || lastDigit === 3 || lastDigit === 4) {
-    return `${number} раза`;
-  } else {
-    return `${number} раз`;
+export function getWordForQuantity(count) {
+  const remainder10 = count % 10;
+  const remainder100 = count % 100;
+
+  if (remainder100 >= 11 && remainder100 <= 19) {
+    return 'товаров';
   }
+
+  if (remainder10 === 1) {
+    return 'товар';
+  }
+
+  if (remainder10 >= 2 && remainder10 <= 4) {
+    return 'товара';
+  }
+
+  return 'товаров';
 }
