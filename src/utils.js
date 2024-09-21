@@ -1,71 +1,88 @@
 /**
- * Плюрализация
- * Возвращает вариант с учётом правил множественного числа под указанную локаль
- * @param value {Number} Число, под которое выбирается вариант формы.
- * @param variants {Object<String>} Варианты форм множественного числа.
- * @example plural(5, {one: 'товар', few: 'товара', many: 'товаров'})
- * @param [locale] {String} Локаль (код языка)
- * @returns {*|string}
+ * Выбор формы множественного числа в зависимости от числа.
+ *
+ * @param {number} value - Число, под которое выбирается вариант формы.
+ * @param {Object} variants - Варианты форм множественного числа.
+ * @param {string} [locale='ru-RU'] - Локаль (код языка).
+ * @returns {string} - Возвращенный вариант формы множественного числа.
+ *
+ * @example pluralForm(5, {one: 'товар', few: 'товара', many: 'товаров'})
  */
-export function plural(value, variants = {}, locale = 'ru-RU') {
-  // Получаем фурму кодовой строкой: 'zero', 'one', 'two', 'few', 'many', 'other'
-  // В русском языке 3 формы: 'one', 'few', 'many', и 'other' для дробных
-  // В английском 2 формы: 'one', 'other'
-  const key = new Intl.PluralRules(locale).select(value);
-  // Возвращаем вариант по ключу, если он есть
-  return variants[key] || '';
+export function pluralForm(value, variants = {}, locale = 'ru-RU') {
+  const pluralRule = new Intl.PluralRules(locale).select(value);
+  return variants[pluralRule] || '';
 }
 
 /**
- * Генератор чисел с шагом 1
- * Вариант с замыканием на начальное значение в самовызываемой функции.
- * @returns {Number}
+ * Генератор чисел с шагом 1 на основе замыкания.
+ *
+ * @param {number} [initialValue=0] - Начальное значение для генератора.
+ * @returns {function(): number} - Функция, возвращающая следующее значение.
  */
-export const generateCode = (function (start = 0) {
-  return () => ++start;
-})();
+export function createIncrementalGenerator(initialValue = 0) {
+  let counter = initialValue;
+  return function () {
+    return ++counter;
+  };
+}
+
+export const generateCode = createIncrementalGenerator();
 
 /**
- * Генератор чисел с шагом 1
- * Вариант с генератором.
- * Сразу создаётся генератор и возвращается функция для получения следующего значения генератора
- * @returns {Number}
+ * Генератор чисел с шагом 1 с использованием генераторов.
+ *
+ * @param {number} [initialValue=0] - Начальное значение для генератора.
+ * @returns {function(): number} - Функция, возвращающая следующее значение из генератора.
  */
-export const generateCode1 = (function (start = 0) {
-  function* realGenerator(start) {
+export function createGenerator(initialValue = 0) {
+  function* numberGenerator(start) {
     while (true) {
       yield ++start;
     }
   }
 
-  const gen = realGenerator(start);
-  return () => gen.next().value;
-})();
-
-/**
- * Генератор чисел с шагом 1
- * Вариант с использованием функции как объекта для хранения значения value
- * @returns {Number}
- */
-export function generateCode2() {
-  return generateCode2.value ? ++generateCode2.value : (generateCode2.value = 1);
+  const generator = numberGenerator(initialValue);
+  return function () {
+    return generator.next().value;
+  };
 }
 
-export function getWordForQuantity(count) {
-  const remainder10 = count % 10;
-  const remainder100 = count % 100;
+export const generateCodeWithGenerator = createGenerator();
 
-  if (remainder100 >= 11 && remainder100 <= 19) {
-    return 'товаров';
+/**
+ * Генератор чисел с шагом 1 с использованием статической переменной.
+ *
+ * @returns {number} - Следующее значение.
+ */
+export function generateCodeWithStaticVariable() {
+  if (!generateCodeWithStaticVariable.value) {
+    generateCodeWithStaticVariable.value = 1;
+  } else {
+    generateCodeWithStaticVariable.value++;
   }
+  return generateCodeWithStaticVariable.value;
+}
 
-  if (remainder10 === 1) {
-    return 'товар';
-  }
-
-  if (remainder10 >= 2 && remainder10 <= 4) {
-    return 'товара';
-  }
-
-  return 'товаров';
+/**
+ * Форматирование цены с учетом локали и валюты.
+ *
+ * @param {number} price - Цена для форматирования.
+ * @param {string} [locale='ru-RU'] - Локаль для форматирования.
+ * @param {string} [currency='RUB'] - Валюта для форматирования.
+ * @param {number} [minimumFractionDigits=0] - Количество знаков после запятой.
+ * @returns {string} - Отформатированная цена.
+ *
+ * @example formatCurrency(5, 'ru-RU', 'RUB', 2) // 5,00 ₽
+ */
+export function formatCurrency(
+  price,
+  locale = 'ru-RU',
+  currency = 'RUB',
+  minimumFractionDigits = 0,
+) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency,
+    minimumFractionDigits,
+  }).format(price);
 }
