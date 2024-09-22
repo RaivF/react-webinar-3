@@ -1,53 +1,40 @@
-/* .Item {
-  display: flex;
-  justify-content: flex-start;
-  transition: background-color 1s;
-  align-items: center;
-}
-
-.Item-price {
-  white-space: nowrap ;
-}
-
-.Item-code {
-  padding: 20px 10px 20px 20px;
-}
-
-.Item-title {
-  width: 100%;
-  padding: 20px 10px;
-}
-
-.Item-actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 20px 20px 10px;
-} */
-.Item {
+.ItemAdd,
+.ItemRemove {
   display: flex;
   justify-content: flex-start;
 }
 
-.Item-code {
+.ItemAdd-code,
+.ItemRemove-code {
   padding: 20px 10px 20px 20px;
 }
 
-.Item-title {
+.ItemAdd-title,
+.ItemRemove-title {
   width: 100%;
   padding: 20px 10px;
 }
 
-.Item-actions {
+.ItemAdd-actions,
+.ItemRemove-actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 20px 20px 20px 10px;
 }
 
-.Item-price {
+.ItemAdd-price,
+.ItemRemove-price {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 20px 0px;
   width: 25%;
+}
+
+.ItemRemove-count {
+  display: flex;
+  width: 100px;
+  align-items: center;
+  margin-left: 10px;
 }

@@ -6,6 +6,7 @@ import Modal from '../modal';
 import Head from '../head';
 import List from '../list';
 import Result from '../result';
+import ItemRemove from '../item/ItemRemove';
 
 function Cart(props) {
   const {
@@ -25,9 +26,23 @@ function Cart(props) {
     <div className={cn()}>
       <Modal active={props.modalOpen} setModalOpen={props.setModalOpen}>
         <Head title={props.title} />
+
         <List list={props.list} type={props.type} action={props.action} />
+        {list.map(item => {
+          if (item.count) {
+            return (
+              <div key={item.code} className={cn('item')}>
+                <ItemRemove item={item} action={action} />
+              </div>
+            );
+          }
+        })}
+
         {(!!props.uniqueItems && <Result totalPrice={props.totalPrice} />) ||
           (props.type !== 'list' && <div className={cn({ empty: true })}>Ваша корзина пуста!</div>)}
+        <button className={cn('button')} onClick={setModalOpen}>
+          Закрыть
+        </button>
       </Modal>
     </div>
   );

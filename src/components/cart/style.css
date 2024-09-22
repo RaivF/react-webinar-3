@@ -1,9 +1,18 @@
-.Cart{
-
-}
+.Cart {}
 
 .Cart_empty {
   font-size: 40px;
   text-align: center;
   padding: 100px 0;
+}
+
+.Cart-button {
+  position: absolute;
+  top: 30px;
+  left: 90%;
+
+}
+
+.ItemRemove {
+  border-bottom: 2px dashed #ccc;
 }

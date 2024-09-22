@@ -4,6 +4,7 @@ import Controls from './components/controls';
 import Head from './components/head';
 import PageLayout from './components/page-layout';
 import Cart from './components/cart';
+import ItemAdd from './components/item/ItemAdd';
 
 /**
  * Приложение
@@ -32,16 +33,21 @@ function App({ store }) {
       [store],
     ),
   };
-
   return (
     <PageLayout>
-      <Head title="Приложение на чистом JS" />
+      <Head title="Магазин" />
       <Controls
         totalPrice={totalPrice}
         uniqueItems={uniqueItems}
         action={() => setModalOpen(prev => !prev)}
       />
-      <List list={list} action={callbacks.addToCart} />
+      <List list={list}>
+        {list.map(item => (
+          <div key={item.code} className={'item'}>
+            <ItemAdd item={item} action={callbacks.addToCart} />
+          </div>
+        ))}
+      </List>
       <Cart
         modalOpen={modalOpen}
         setModalOpen={() => {

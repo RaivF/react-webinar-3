@@ -31,7 +31,6 @@
 
 .Modal-content> :nth-child(3) {
   max-height: clamp(10%, 70%, 80%);
-  overflow-y: scroll;
 }
 
 .Modal-content> :nth-child(3)::-webkit-scrollbar {
@@ -44,12 +43,6 @@
 }
 
 .Modal-content_active {
-  height: 50vh;
-  transform: scale(1);
-}
 
-.Modal-button {
-  position: absolute;
-  top: 30px;
-  left: 90%;
+  transform: scale(1);
 }

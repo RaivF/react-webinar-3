@@ -12,7 +12,10 @@ const CartStats = ({ totalPrice = 0, uniqueItems = 0 }) => {
   return (
     <div className={cn()}>
       В корзине:
-      <span className={cn('values')}>{`${uniqueItems} ${itemsLabel} / ${formattedPrice}`}</span>
+      {uniqueItems == 0 && <span className={cn('values')}>пусто</span>}
+      {uniqueItems != 0 && (
+        <span className={cn('values')}>{`${uniqueItems} ${itemsLabel} / ${formattedPrice}`}</span>
+      )}
     </div>
   );
 };
