@@ -23,7 +23,6 @@ function Main() {
     size: state.catalog.limit,
     total: state.catalog.total,
   }));
-  console.log(select);
 
   const callbacks = {
     // Добавление в корзину
