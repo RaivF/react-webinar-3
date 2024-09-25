@@ -1,0 +1,17 @@
+.Button {
+  display: inline-block;
+  font-size: 16px;
+  border: none;
+  color: #000;
+  background: #fff;
+  cursor: pointer;
+}
+
+.Button:not([class*='Button_active']):hover {
+  background: #e1e1e1;
+}
+
+.Button_active {
+  color: #fff;
+  background: var(--primary-color);
+}

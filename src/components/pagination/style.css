@@ -1,0 +1,10 @@
+.Pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 22px 20px;
+}
+
+.Pagination-ellipsis {
+  color: #ccc;
+}
