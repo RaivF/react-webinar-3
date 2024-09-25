@@ -4,14 +4,16 @@ import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from '../../utils';
 import './style.css';
 import Navigation from '../navigation';
+import { useIntl } from '../../context/intl-context';
 
 function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
+  const { t } = useIntl();
   const cn = bem('BasketTool');
   return (
     <div className={cn('container')}>
       <Navigation />
       <div className={cn()}>
-        <span className={cn('label')}>В корзине:</span>
+        <span className={cn('label')}>{t('In Cart')}</span>
         <span className={cn('total')}>
           {amount
             ? `${amount} ${plural(amount, {
@@ -19,9 +21,9 @@ function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
                 few: 'товара',
                 many: 'товаров',
               })} / ${numberFormat(sum)} ₽`
-            : `пусто`}
+            : `${t('empty')}`}
         </span>
-        <button onClick={onOpen}>Перейти</button>
+        <button onClick={onOpen}>{t('Go to Cart')}</button>
       </div>
     </div>
   );

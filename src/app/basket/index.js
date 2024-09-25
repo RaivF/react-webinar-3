@@ -5,10 +5,11 @@ import ModalLayout from '../../components/modal-layout';
 import BasketTotal from '../../components/basket-total';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
+import { useIntl } from '../../context/intl-context';
 
 function Basket() {
   const store = useStore();
-
+  const { t } = useIntl();
   const select = useSelector(state => ({
     list: state.basket.list,
     amount: state.basket.amount,
@@ -32,7 +33,7 @@ function Basket() {
   };
 
   return (
-    <ModalLayout title="Корзина" onClose={callbacks.closeModal}>
+    <ModalLayout title={t('Cart')} onClose={callbacks.closeModal}>
       <List list={select.list} renderItem={renders.itemBasket} />
       <BasketTotal sum={select.sum} />
     </ModalLayout>

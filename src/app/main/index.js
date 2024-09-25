@@ -7,10 +7,11 @@ import List from '../../components/list';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import Pagination from '../../components/pagination/index';
+import { useIntl } from '../../context/intl-context';
 
 function Main() {
   const store = useStore();
-
+  const { locale, setLocale, t } = useIntl();
   useEffect(() => {
     store.actions.catalog.load();
   }, []);
@@ -43,7 +44,7 @@ function Main() {
 
   return (
     <PageLayout>
-      <Head title="Магазин" />
+      <Head title={t('Store')} defaultLocale={locale} onChangeLocale={setLocale} />
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} />
       <Pagination

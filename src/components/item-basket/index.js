@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 import './style.css';
 import { Link } from 'react-router-dom';
 import useStore from '../../store/use-store';
+import { useIntl } from '../../context/intl-context';
 
 function ItemBasket(props) {
   const store = useStore();
   const cn = bem('ItemBasket');
-
+  const { t } = useIntl();
   const callbacks = {
     onRemove: e => props.onRemove(props.item._id),
     // Закрытие любой модалки
@@ -28,7 +29,7 @@ function ItemBasket(props) {
         <div className={cn('cell')}>{numberFormat(props.item.price)} ₽</div>
         <div className={cn('cell')}>{numberFormat(props.item.amount || 0)} шт</div>
         <div className={cn('cell')}>
-          <button onClick={callbacks.onRemove}>Удалить</button>
+          <button onClick={callbacks.onRemove}>{t('Remove')}</button>
         </div>
       </div>
     </div>
