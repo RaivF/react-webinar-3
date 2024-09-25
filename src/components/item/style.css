@@ -1,8 +1,10 @@
 .Item {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
   transition: background-color 1s;
   padding-left: 10px;
+  margin-bottom: -2px;
 }
 
 .Item_selected {
@@ -17,6 +19,13 @@
 .Item-title {
   width: 100%;
   padding: 20px 10px;
+}
+
+.Item a {
+  width: 100%;
+  color: black;
+  text-decoration: none;
+
 }
 
 .Item-actions {

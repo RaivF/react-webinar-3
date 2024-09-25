@@ -6,8 +6,12 @@
   font-size: 18px;
 }
 
-.BasketTool-label {
+.BasketTool-container {
+  display: flex;
+  justify-content: space-between
 }
+
+.BasketTool-label {}
 
 .BasketTool-total {
   font-weight: bold;

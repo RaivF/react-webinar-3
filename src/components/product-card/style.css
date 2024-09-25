@@ -1,0 +1,21 @@
+.ProductCard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  gap: 20px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.ProductCard p {
+  margin: 0;
+  padding: 0;
+}
+
+.ProductCard-price {
+  font-size: 24px;
+}
+
+.ProductCard-button {
+  align-self: start;
+}
