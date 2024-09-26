@@ -45,14 +45,6 @@ class Store {
    * @param newState {Object}
    */
   setState(newState, description = 'setState') {
-    console.group(
-      `%c${'store.setState'} %c${description}`,
-      `color: ${'#777'}; font-weight: normal`,
-      `color: ${'#333'}; font-weight: bold`,
-    );
-
-    console.groupEnd();
-
     this.state = newState;
     // Вызываем всех слушателей
     for (const listener of this.listeners) listener(this.state);

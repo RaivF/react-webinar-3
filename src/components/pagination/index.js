@@ -44,8 +44,4 @@ Pagination.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-Pagination.defaultProps = {
-  start: 1,
-};
-
 export default React.memo(Pagination);

@@ -1,25 +1,30 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from '../../utils';
 import './style.css';
 import Navigation from '../navigation';
 import { useIntl } from '../../context/intl-context';
+import useStore from '../../store/use-store';
 
 function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
   const { t } = useIntl();
   const cn = bem('BasketTool');
+  const store = useStore();
+  const callbacks = {
+    loadMorePerPage: useCallback(pageCount => store.actions.catalog.load(pageCount - 1), [store]),
+  };
   return (
     <div className={cn('container')}>
-      <Navigation />
+      <Navigation onClick={callbacks.loadMorePerPage} />
       <div className={cn()}>
         <span className={cn('label')}>{t('In Cart')}</span>
         <span className={cn('total')}>
           {amount
             ? `${amount} ${plural(amount, {
-                one: 'товар',
-                few: 'товара',
-                many: 'товаров',
+                one: t('one'),
+                few: t('other'),
+                many: t('many'),
               })} / ${numberFormat(sum)} ₽`
             : `${t('empty')}`}
         </span>

@@ -1,3 +1,5 @@
+import item from '../components/item';
+
 export const PAGE_LIMIT = 10;
 
 export const WORDS_MAP = {
@@ -12,5 +14,8 @@ export const WORDS_MAP = {
     ['In Cart']: 'В корзине',
     ['Total']: 'Итого',
     empty: 'пусто',
+    one: 'товар',
+    other: 'товара',
+    many: 'товаров',
   },
 };

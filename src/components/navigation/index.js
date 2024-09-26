@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useIntl } from '../../context/intl-context';
 import './style.css';
 
-const Navigation = () => {
+const Navigation = ({ onClick }) => {
   const { t } = useIntl();
   const cn = bem('Navigation');
 
@@ -12,8 +12,11 @@ const Navigation = () => {
       <ul className={cn('list')}>
         <li>
           <NavLink
-            to='/'
+            to="/"
             className={cn('link')}
+            onClick={() => {
+              onClick(1);
+            }}
           >
             {t('Home')}
           </NavLink>

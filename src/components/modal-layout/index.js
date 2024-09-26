@@ -4,12 +4,13 @@ import { cn as bem } from '@bem-react/classname';
 import './style.css';
 import { useIntl } from '../../context/intl-context';
 
-function ModalLayout(props) {
+function ModalLayout({ title = 'Модалка', onClose = () => {}, children }) {
   const cn = bem('ModalLayout');
   const { t } = useIntl();
   // Корректировка центра, если модалка больше окна браузера.
   const layout = useRef();
   const frame = useRef();
+
   useEffect(() => {
     const resizeObserver = new ResizeObserver(() => {
       // Центрирование frame или его прижатие к краю, если размеры больше чем у layout
@@ -29,12 +30,12 @@ function ModalLayout(props) {
     <div className={cn()} ref={layout}>
       <div className={cn('frame')} ref={frame}>
         <div className={cn('head')}>
-          <h1 className={cn('title')}>{props.title}</h1>
-          <button className={cn('close')} onClick={props.onClose}>
+          <h1 className={cn('title')}>{title}</h1>
+          <button className={cn('close')} onClick={onClose}>
             {t('Close')}
           </button>
         </div>
-        <div className={cn('content')}>{props.children}</div>
+        <div className={cn('content')}>{children}</div>
       </div>
     </div>
   );
@@ -44,11 +45,6 @@ ModalLayout.propTypes = {
   title: PropTypes.string,
   onClose: PropTypes.func,
   children: PropTypes.node,
-};
-
-ModalLayout.defaultProps = {
-  title: 'Модалка',
-  onClose: () => {},
 };
 
 export default memo(ModalLayout);

@@ -6,20 +6,20 @@ import './style.css';
 import { Link } from 'react-router-dom';
 import { useIntl } from '../../context/intl-context';
 
-function Item(props) {
+function Item({ item, onAdd = () => {} }) {
   const cn = bem('Item');
   const { t } = useIntl();
   const callbacks = {
-    onAdd: e => props.onAdd(props.item._id),
+    onAdd: e => onAdd(item._id),
   };
 
   return (
     <div className={cn()}>
-      <Link to={`/product/${props.item._id}`}>
-        <div className={cn('title')}>{props.item.title}</div>
+      <Link to={`/product/${item._id}`}>
+        <div className={cn('title')}>{item.title}</div>
       </Link>
       <div className={cn('actions')}>
-        <div className={cn('price')}>{numberFormat(props.item.price)} ₽</div>
+        <div className={cn('price')}>{numberFormat(item.price)} ₽</div>
         <button onClick={callbacks.onAdd}>{t('Add')}</button>
       </div>
     </div>
@@ -33,10 +33,6 @@ Item.propTypes = {
     price: PropTypes.number,
   }).isRequired,
   onAdd: PropTypes.func,
-};
-
-Item.defaultProps = {
-  onAdd: () => {},
 };
 
 export default memo(Item);

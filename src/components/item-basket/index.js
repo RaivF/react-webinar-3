@@ -8,26 +8,26 @@ import { Link } from 'react-router-dom';
 import useStore from '../../store/use-store';
 import { useIntl } from '../../context/intl-context';
 
-function ItemBasket(props) {
+function ItemBasket({ item, onRemove = () => {} }) {
   const store = useStore();
   const cn = bem('ItemBasket');
   const { t } = useIntl();
   const callbacks = {
-    onRemove: e => props.onRemove(props.item._id),
+    onRemove: e => onRemove(item._id),
     // Закрытие любой модалки
     closeModal: useCallback(() => store.actions.modals.close(), [store]),
   };
 
   return (
     <div className={cn()}>
-      <Link to={`/product/${props.item._id}`}>
+      <Link to={`/product/${item._id}`}>
         <div className={cn('title')} onClick={callbacks.closeModal}>
-          {props.item.title}
+          {item.title}
         </div>
       </Link>
       <div className={cn('right')}>
-        <div className={cn('cell')}>{numberFormat(props.item.price)} ₽</div>
-        <div className={cn('cell')}>{numberFormat(props.item.amount || 0)} шт</div>
+        <div className={cn('cell')}>{numberFormat(item.price)} ₽</div>
+        <div className={cn('cell')}>{numberFormat(item.amount || 0)} шт</div>
         <div className={cn('cell')}>
           <button onClick={callbacks.onRemove}>{t('Remove')}</button>
         </div>
@@ -44,10 +44,6 @@ ItemBasket.propTypes = {
     amount: PropTypes.number,
   }).isRequired,
   onRemove: propTypes.func,
-};
-
-ItemBasket.defaultProps = {
-  onRemove: () => {},
 };
 
 export default memo(ItemBasket);
