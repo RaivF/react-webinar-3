@@ -8,6 +8,7 @@ import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import Pagination from '../../components/pagination/index';
 import { useIntl } from '../../context/intl-context';
+import { ADDRESS_TO_ITEM_PAGE } from '../../store/const';
 
 function Main() {
   const store = useStore();
@@ -36,7 +37,7 @@ function Main() {
   const renders = {
     item: useCallback(
       item => {
-        return <Item item={item} onAdd={callbacks.addToBasket} />;
+        return <Item item={item} onAdd={callbacks.addToBasket} address={ADDRESS_TO_ITEM_PAGE} />;
       },
       [callbacks.addToBasket],
     ),

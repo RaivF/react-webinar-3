@@ -20,11 +20,10 @@ function ItemBasket({ item, onRemove = () => {} }) {
 
   return (
     <div className={cn()}>
-      <Link to={`/product/${item._id}`}>
-        <div className={cn('title')} onClick={callbacks.closeModal}>
-          {item.title}
-        </div>
-      </Link>
+      <div className={cn('title')} onClick={callbacks.closeModal}>
+        <Link to={`/product/${item._id}`}> {item.title}</Link>
+      </div>
+
       <div className={cn('right')}>
         <div className={cn('cell')}>{numberFormat(item.price)} ₽</div>
         <div className={cn('cell')}>{numberFormat(item.amount || 0)} шт</div>

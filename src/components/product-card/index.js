@@ -1,11 +1,23 @@
 import { cn as bem } from '@bem-react/classname';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from '../../context/intl-context';
 import { numberFormat } from '../../utils';
 import './style.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ item, onAddProduct }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const loc = location.pathname.split('/')[1];
+  console.log(loc);
+
+  // useEffect(() => {
+  //   if (loc === 'product') {
+  //     navigate('/');
+  //   }
+  // }, []);
+
   const { t } = useIntl();
   const cn = bem('ProductCard');
 
@@ -32,10 +44,7 @@ const ProductCard = ({ item, onAddProduct }) => {
         <strong>Цена: {numberFormat(price)} ₽</strong>
       </p>
 
-      <button
-        className={cn('button')}
-        onClick={() => onAddProduct(_id)}
-      >
+      <button className={cn('button')} onClick={() => onAddProduct(_id)}>
         {t('Add')}
       </button>
     </article>

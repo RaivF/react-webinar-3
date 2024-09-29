@@ -6,7 +6,7 @@ import './style.css';
 import { Link } from 'react-router-dom';
 import { useIntl } from '../../context/intl-context';
 
-function Item({ item, onAdd = () => {} }) {
+function Item({ item, onAdd = () => {}, address }) {
   const cn = bem('Item');
   const { t } = useIntl();
   const callbacks = {
@@ -15,9 +15,10 @@ function Item({ item, onAdd = () => {} }) {
 
   return (
     <div className={cn()}>
-      <Link to={`/product/${item._id}`}>
-        <div className={cn('title')}>{item.title}</div>
-      </Link>
+      <div className={cn('title')}>
+        <Link to={`${address}${item._id}`}>{item.title} </Link>
+      </div>
+
       <div className={cn('actions')}>
         <div className={cn('price')}>{numberFormat(item.price)} ₽</div>
         <button onClick={callbacks.onAdd}>{t('Add')}</button>

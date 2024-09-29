@@ -2,6 +2,8 @@ import item from '../components/item';
 
 export const PAGE_LIMIT = 10;
 
+export const ADDRESS_TO_ITEM_PAGE = '/product/';
+
 export const WORDS_MAP = {
   ru: {
     Store: 'Магазин',
