@@ -38,16 +38,16 @@ const LoginForm = ({ title, onSubmit, isSubmitting, error, isSuccess, onLoginSuc
 
       <form onSubmit={handleSubmit} className={cn('form')}>
         <div className={cn('field')}>
-          <label htmlFor='login' className={cn('label')}>
+          <label htmlFor="login" className={cn('label')}>
             Логин
           </label>
           <input
             ref={usernameInputRef}
-            type='text'
-            id='login'
-            name='login'
+            type="text"
+            id="login"
+            name="login"
             className={cn('input')}
-            autoComplete='username'
+            autoComplete="username"
             onChange={handleChange}
             value={formState.login}
             required
@@ -55,15 +55,15 @@ const LoginForm = ({ title, onSubmit, isSubmitting, error, isSuccess, onLoginSuc
         </div>
 
         <div className={cn('field')}>
-          <label htmlFor='password' className={cn('label')}>
+          <label htmlFor="password" className={cn('label')}>
             Пароль
           </label>
           <input
-            type='password'
-            id='password'
-            name='password'
+            type="password"
+            id="password"
+            name="password"
             className={cn('input')}
-            autoComplete='current-password'
+            autoComplete="current-password"
             onChange={handleChange}
             value={formState.password}
             required
@@ -74,7 +74,7 @@ const LoginForm = ({ title, onSubmit, isSubmitting, error, isSuccess, onLoginSuc
         {isSuccess && <div className={cn('success')}>{t('user.successLogin')}</div>}
 
         <div className={cn('field')}>
-          <button type='submit' className={cn('button')} disabled={isSubmitting}>
+          <button type="submit" className={cn('button')} disabled={isSubmitting}>
             {t('user.toLogin')}
           </button>
         </div>

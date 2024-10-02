@@ -24,7 +24,7 @@ const UserPanel = () => {
       user={user}
       onLogin={handleLogin}
       onLogout={handleLogout}
-      linkToProfile='/profile'
+      linkToProfile="/profile"
       t={t}
     />
   );

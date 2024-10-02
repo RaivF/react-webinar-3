@@ -49,7 +49,7 @@ function CatalogFilter() {
   const { t } = useTranslate();
 
   return (
-    <SideLayout padding='medium'>
+    <SideLayout padding="medium">
       <Select options={options.category} value={select.category} onChange={callbacks.onCategory} />
       <Select options={options.sort} value={select.sort} onChange={callbacks.onSort} />
       <Input

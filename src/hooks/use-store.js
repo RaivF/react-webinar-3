@@ -1,5 +1,5 @@
-import {useContext} from "react";
-import {StoreContext} from "../store/context";
+import { useContext } from 'react';
+import { StoreContext } from '../store/context';
 
 /**
  * Хук для доступа к объекту хранилища

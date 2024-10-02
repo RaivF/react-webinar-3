@@ -5,9 +5,9 @@ import './style.css';
 
 const UserPanelView = ({ isUserAuth, user, onLogin, onLogout, linkToProfile, t }) => {
   return (
-    <div className='UserPanel'>
+    <div className="UserPanel">
       {isUserAuth && (
-        <Link to={linkToProfile} className='UserPanel-link'>
+        <Link to={linkToProfile} className="UserPanel-link">
           {user?.profile?.name}
         </Link>
       )}
