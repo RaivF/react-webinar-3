@@ -16,5 +16,14 @@
     "few": "товара",
     "many": "товаров",
     "other": "товара"
-  }
+  },
+  "user.login": "Вход",
+  "user.logout": "Выход",
+  "user.profile": "Профиль",
+  "user.name": "Имя",
+  "user.phone": "Телефон",
+  "user.toLogin": "Войти",
+  "user.successLogin": "Вы успешно вошли в систему",
+  "user.successLogout": "Вы вышли из системы",
+  "user.loginInProgress": "Вход в систему..."
 }

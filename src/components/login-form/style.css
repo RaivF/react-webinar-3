@@ -1,0 +1,55 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 38px 20px;
+  gap: 20px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.LoginForm-title {
+  margin: 0;
+  margin-bottom: -4px;
+  font-size: 24px;
+}
+
+.LoginForm-error {
+  color: #ff0000;
+}
+
+.LoginForm-success {
+  color: #00ff00;
+}
+
+.LoginForm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.LoginForm-field {
+  /*  */
+}
+
+.LoginForm-label {
+  display: block;
+}
+
+.LoginForm-input {
+  min-width: 195px;
+  min-height: 22px;
+  font: inherit;
+  border-radius: 1px;
+  border: 1px solid #767676;
+  background: #fff;
+}
+
+.LoginForm-button {
+  /*  */
+}
+
+.LoginForm-button:disabled {
+  opacity: 0.9;
+}

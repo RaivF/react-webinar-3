@@ -51,14 +51,13 @@ if (process.env.NODE_ENV === 'development') {
     static: path.join(__dirname, 'dist'),
     port: 8010,
     historyApiFallback: true,
-    proxy: [
-      {
-        context: '/api/**',
+    proxy: {
+      '/api/**': {
         target: 'http://query.rest',
         secure: false,
         changeOrigin: true,
       },
-    ],
+    },
   };
 }
 

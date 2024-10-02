@@ -1,9 +1,10 @@
-import StoreModule from '../module';
+import StoreModule from "../module";
 
 class LocaleState extends StoreModule {
+
   initState() {
     return {
-      lang: 'ru',
+      lang: 'ru'
     };
   }
 
@@ -12,7 +13,7 @@ class LocaleState extends StoreModule {
    * @param lang
    */
   setLang(lang) {
-    this.setState({ lang }, 'Установлена локаль');
+    this.setState({lang}, 'Установлена локаль');
   }
 }
 
