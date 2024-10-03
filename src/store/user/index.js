@@ -74,10 +74,6 @@ class UserState extends StoreModule {
         },
         'Ошибка при загрузке пользователя',
       );
-    } finally {
-      setTimeout(() => {
-        this.clearAllErrors();
-      }, 3000);
     }
   }
 

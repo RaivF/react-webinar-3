@@ -76,14 +76,11 @@ class AuthState extends StoreModule {
         },
         'Ошибка при загрузке пользователя',
       );
-    } finally {
-      setTimeout(() => {
-        this.clearAllErrors();
-      }, 3000);
     }
   }
 
   async login(data) {
+    this.clearAllErrors();
     this.setState(
       {
         ...this.getState(),
@@ -129,10 +126,6 @@ class AuthState extends StoreModule {
         },
         'Ошибка при авторизации',
       );
-    } finally {
-      setTimeout(() => {
-        this.clearAllErrors();
-      }, 3000);
     }
   }
 
@@ -190,10 +183,6 @@ class AuthState extends StoreModule {
         },
         'Ошибка при выходе',
       );
-    } finally {
-      setTimeout(() => {
-        this.clearAllErrors();
-      }, 3000);
     }
   }
 

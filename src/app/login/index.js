@@ -13,7 +13,6 @@ function Login() {
   const { login, isPending, error, isSuccess } = useAuth();
   const { t } = useTranslate();
   const navigate = useNavigate();
-
   const handleLoginSuccess = useCallback(() => navigate('/profile', { replace: true }), [navigate]);
 
   return (

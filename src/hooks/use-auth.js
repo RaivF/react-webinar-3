@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import useSelector from '../hooks/use-selector';
 import useStore from '../hooks/use-store';
+import { useNavigate } from 'react-router-dom';
 
 export const useAuth = () => {
   const store = useStore();

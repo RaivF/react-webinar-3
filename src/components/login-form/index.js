@@ -2,18 +2,16 @@ import { cn as bem } from '@bem-react/classname';
 import PropTypes from 'prop-types';
 import { memo, useEffect, useRef, useState } from 'react';
 import './style.css';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ title, onSubmit, isSubmitting, error, isSuccess, onLoginSuccess, t }) => {
   const cn = bem('LoginForm');
+  const navigate = useNavigate();
+
   const [formState, setFormState] = useState({
     login: '',
     password: '',
   });
-
-  const usernameInputRef = useRef();
-  useEffect(() => {
-    usernameInputRef?.current?.focus();
-  }, []);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -29,6 +27,7 @@ const LoginForm = ({ title, onSubmit, isSubmitting, error, isSuccess, onLoginSuc
     if (isSuccess) {
       setFormState({ login: '', password: '' });
       onLoginSuccess();
+      navigate(-1);
     }
   }, [isSuccess, onLoginSuccess]);
 
@@ -42,7 +41,6 @@ const LoginForm = ({ title, onSubmit, isSubmitting, error, isSuccess, onLoginSuc
             Логин
           </label>
           <input
-            ref={usernameInputRef}
             type="text"
             id="login"
             name="login"
@@ -51,6 +49,7 @@ const LoginForm = ({ title, onSubmit, isSubmitting, error, isSuccess, onLoginSuc
             onChange={handleChange}
             value={formState.login}
             required
+            autoFocus
           />
         </div>
 
