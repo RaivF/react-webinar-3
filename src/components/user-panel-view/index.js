@@ -3,16 +3,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-const UserPanelView = ({ isUserAuth, user, onLogin, onLogout, linkToProfile, t }) => {
+const UserPanelView = ({ user, onLogin, onLogout, linkToProfile, t }) => {
   return (
     <div className="UserPanel">
-      {isUserAuth && (
+      {user?.profile && (
         <Link to={linkToProfile} className="UserPanel-link">
           {user?.profile?.name}
         </Link>
       )}
 
-      {isUserAuth ? (
+      {user?.profile ? (
         <button onClick={onLogout}>{t('user.logout')}</button>
       ) : (
         <button onClick={onLogin}>{t('user.login')}</button>
@@ -22,7 +22,6 @@ const UserPanelView = ({ isUserAuth, user, onLogin, onLogout, linkToProfile, t }
 };
 
 UserPanelView.propTypes = {
-  isUserAuth: PropTypes.bool.isRequired,
   user: PropTypes.shape({ profile: PropTypes.shape({ name: PropTypes.string }) }).isRequired,
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,

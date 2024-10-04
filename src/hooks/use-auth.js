@@ -33,7 +33,7 @@ export const useAuth = () => {
     isSuccess: select.isSuccess,
     login: callbacks.login,
     logout: callbacks.logout,
-    isUserAuth: Boolean(select.token) || Object.keys(select.user ?? {}).length > 0,
+
     isInitialAuth: select.isInitialAuth,
   };
 };

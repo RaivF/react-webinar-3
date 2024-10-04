@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/use-auth';
 import useTranslate from '../../hooks/use-translate';
 
 const UserPanel = () => {
-  const { isUserAuth, user, logout } = useAuth();
+  const { user, logout } = useAuth();
   const { t } = useTranslate();
   const navigate = useNavigate();
 
@@ -20,7 +20,6 @@ const UserPanel = () => {
 
   return (
     <UserPanelView
-      isUserAuth={isUserAuth}
       user={user}
       onLogin={handleLogin}
       onLogout={handleLogout}

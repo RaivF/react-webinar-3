@@ -6,7 +6,7 @@ import useTranslate from '../../hooks/use-translate';
 import { storage } from '../../utils';
 
 function RequireAuth({ children }) {
-  const { isUserAuth, isInitialAuth, error } = useAuth();
+  const { user, isInitialAuth, error } = useAuth();
   const location = useLocation();
   const { t } = useTranslate();
   const localToken = storage.getToken();
@@ -15,7 +15,7 @@ function RequireAuth({ children }) {
     return <Loader title={t('user.loginInProgress')} />;
   }
 
-  if (!isUserAuth || error) {
+  if (!user?.profile || error) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
