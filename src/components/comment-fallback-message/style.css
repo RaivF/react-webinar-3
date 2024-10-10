@@ -1,0 +1,24 @@
+.CommentFallbackMessage-link {
+  color: #0087E9;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+}
+
+.CommentFallbackMessage-cancel {
+  padding: 0;
+  color: #666;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  background: none;
+}

@@ -1,0 +1,13 @@
+.UserPanel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 20px;
+  border: 1px solid #DCDCDC;
+}
+
+.UserPanel-link {
+  font-size: 13px;
+
+}

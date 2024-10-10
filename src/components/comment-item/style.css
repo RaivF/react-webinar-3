@@ -1,0 +1,48 @@
+.CommentItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.CommentItem_offset {
+  margin-left: 30px;
+}
+
+.CommentItem-user-name {
+  margin-right: 10px;
+  color: #000;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.CommentItem-user-name_current-user {
+  color: #666;
+}
+
+.CommentItem-date {
+  color: #666;
+  font-family: Arial;
+  font-size: 12px;
+}
+
+.CommentItem-text {
+  margin: 0;
+  color: #000;
+  font-family: Arial;
+  font-size: 14px;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.CommentItem-reply {
+  align-self: self-start;
+  padding: 0;
+  color: #0087E9;
+  font-family: Arial;
+  font-size: 12px;
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  background: none;
+}

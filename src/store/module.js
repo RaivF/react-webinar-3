@@ -3,6 +3,7 @@
  * Для группировки действий над внешним состоянием
  */
 class StoreModule {
+
   /**
    * @param store {Store}
    * @param name {String}
@@ -17,7 +18,7 @@ class StoreModule {
   }
 
   initState() {
-    return {};
+    return {}
   }
 
   getState() {
@@ -25,14 +26,12 @@ class StoreModule {
   }
 
   setState(newState, description = 'setState') {
-    this.store.setState(
-      {
-        ...this.store.getState(),
-        [this.name]: newState,
-      },
-      description,
-    );
+    this.store.setState({
+      ...this.store.getState(),
+      [this.name]: newState
+    }, description)
   }
+
 }
 
 export default StoreModule;

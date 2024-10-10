@@ -1,12 +1,10 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-
 import * as reducers from './exports';
-import { thunk, withExtraArgument } from 'redux-thunk';
-
+import thunk from 'redux-thunk';
 export default function createStoreRedux(services, config = {}) {
   return createStore(
     combineReducers(reducers),
     undefined,
-    applyMiddleware(withExtraArgument(services)),
+    applyMiddleware(thunk.withExtraArgument(services)),
   );
 }

@@ -1,17 +1,15 @@
-import { memo, useCallback, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
-import useStore from '../../hooks/use-store';
-import useSelector from '../../hooks/use-selector';
-import useTranslate from '../../hooks/use-translate';
-import useInit from '../../hooks/use-init';
-import PageLayout from '../../components/page-layout';
+import { memo } from 'react';
 import Head from '../../components/head';
-import Navigation from '../../containers/navigation';
-import Spinner from '../../components/spinner';
-import ArticleCard from '../../components/article-card';
-import LocaleSelect from '../../containers/locale-select';
-import TopHead from '../../containers/top-head';
+import PageLayout from '../../components/page-layout';
 import ProfileCard from '../../components/profile-card';
+import Spinner from '../../components/spinner';
+import LocaleSelect from '../../containers/locale-select';
+import Navigation from '../../containers/navigation';
+import TopHead from '../../containers/top-head';
+import useInit from '../../hooks/use-init';
+import useSelector from '../../hooks/use-selector';
+import useStore from '../../hooks/use-store';
+import useTranslate from '../../hooks/use-translate';
 
 function Profile() {
   const store = useStore();
@@ -25,17 +23,17 @@ function Profile() {
     waiting: state.profile.waiting,
   }));
 
-  const { t } = useTranslate();
+  const {lang, t} = useTranslate();
 
   return (
-    <PageLayout>
-      <TopHead />
+    <PageLayout key={lang}>
+      <TopHead/>
       <Head title={t('title')}>
-        <LocaleSelect />
+        <LocaleSelect/>
       </Head>
-      <Navigation />
+      <Navigation/>
       <Spinner active={select.waiting}>
-        <ProfileCard data={select.profile} />
+        <ProfileCard data={select.profile}/>
       </Spinner>
     </PageLayout>
   );
